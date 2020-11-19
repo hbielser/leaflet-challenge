@@ -67,14 +67,14 @@ d3.json(geoData, function(response) {
       L.circle([lat, lng], {
           color: color,
           fillOpacity: 0.75,
-          radius: mag * 5000,
+          radius: mag * 7500,
       }).bindPopup("<h1> Description: " + title + "</h1>" + "<hr>" + "<h2> Depth: " + depth + "<h2/>")
         .addTo(myMap);
 
     };
 
     colorList = ["Red","OrangeRed","Orange","Yellow","GreenYellow","Green"]
-    depthList = ["90", "70","50","30","10","<10"]
+    depthList = [90, 70, 50, 30, 10, -10]
         
     // Set up the legend - Module 17.2, activity 4
     var legend = L.control({ position: "bottomright" });
@@ -83,19 +83,20 @@ d3.json(geoData, function(response) {
         // var limits = depth.limits;
         var labels = [];
 
-        // Add min & max
+        // Add legend header
         var legendInfo = "<h1>Earthquake Depth Scale</h1>" 
-        // "<div class=\"labels\">" +
-        //     "<div class=\"min\">" + "-10" + "</div>" +
-        //     "<div class=\"max\">" + "90" + "</div>" +
-        // "</div>";
 
         div.innerHTML = legendInfo;
 
-        colorList.forEach(function(color, index) {
+        // for (var i = 0; i < depthList.length; i++) {
+        //   div.innerHTML +=
+        //       '<i style="background:' + getColor(colorList[i] + 1) + '"></i> ' +
+        //       depthList[i] + (depthList[i + 1] ? '&ndash;' + depthList[i + 1] + '<hr>' : '+');
+
+        colorList.forEach(function(color, i) {
         labels.push("<li style=\"background-color: " + color + "\">" + 
-            "<i>" + (depthList[index]) + "</i>" + 
-          "</li>");
+            "<i>" + depthList[i + 1] + (depthList[i] ? '&ndash;' + depthList[i] + '<hr>': + "</i>" +
+          "</li>"));
         });
 
         div.innerHTML += "<ul>" + labels.join("") + "</ul>";

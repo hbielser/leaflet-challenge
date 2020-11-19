@@ -33,6 +33,14 @@ html {
   list-style-type: none;
 }
 
+.legend i {
+  float: left;
+  width: 100px;
+  height: 18px;
+  margin-left: 10px;
+  opacity: .7;
+}
+
 .legend li {
   display: block;
   width: 30px;
